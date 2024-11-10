@@ -9,8 +9,8 @@ and another for [Data-Acquisition](https://github.com/Triton-Baja/Data-Acquisiti
 
 We will be using Git and GitHub to keep track and store the Data Acquisition codebase.
 
-## GitHub setup
-As you can see, we already have set up the Triton Baja organization, so the only thing you need to do if to create a GitHub account if you don't have one yet. This way we can invite you to be part of the organization.
+# GitHub setup
+As you can see, we already have set up the Triton Baja organization, so the only thing you need to do is to create a GitHub account if you don't have one yet. This way we can invite you to be part of the organization.
 
 # Git
 Ideally, we want to install Git on both the Pi and our personal computers. This way we can always write or read the code from our personal computers, even if we don't have access to the Pi.
@@ -32,7 +32,7 @@ While using Git doesn't require any credentials (username, password), if we want
 As you can see, I have already created the repository, now you will want to `clone` it such that you can download all the content locally. Let's open our command line/terminal and traverse to the directory where we want to have the repo folder. For instance, if I want the repo on my Desktop (given that I am using Windows), I would do
 
 ```
-cd cd C:\Users\super\Desktop
+cd C:\Users\super\Desktop
 ```
 
 Now we can clone the repo
@@ -40,19 +40,17 @@ Now we can clone the repo
 git clone https://github.com/Triton-Baja/Data-Acquisition.git
 ```
 
-Now we should see the `Data-Acquisition` folder on our Desktop (or wherever you cloned it)
-
-Let's go into it
+Now we should see the `Data-Acquisition` folder on our Desktop (or wherever you cloned it). Let's go into it
 ```
 cd Data-Acquisition
 ```
 
 # Basig Git Commands
-`git pull` allows us to update our local folder to mirror the repository in the cloud. We must always run this command before we start a work session so that we are always working with the most updated files and don't have a conflict later.
-`git status` shows you the files you have changed and whether or not they are on the queue to be uploaded.
-`git add file` whenever you have changed a `file` you will use this command to add it to the "queue" of files to be uploaded to github.
-`git commit -m "comment"` Once you have added all the files to the queue, you will give them a commit. Here you will add a text comment, which will appear on GitHub's history. This comment should have useful information regarding what changes you made to the codebase.
-`git push` finally, we push (upload) the code to GitHub. Now your changes will be viewable online, and someone would `git pull` to see those changes reflected on their local computer
+`git pull` allows us to update our local folder to mirror the repository in the cloud. We must always run this command before we start a work session so that we are always working with the most updated files and don't have a conflict later.<br>
+`git status` shows you the files you have changed, and whether or not they are on the queue to be uploaded.<br>
+`git add file` whenever you have changed a `file`, you will use this command to add it to the "queue" of files to be uploaded to github.<br>
+`git commit -m "comment"` Once you have added all the files to the queue, you will give them a commit. Here you will add a text comment, which will appear on GitHub's history. This comment should have useful information regarding what changes you made to the codebase.<br>
+`git push` finally, we push (upload) the code to GitHub. Now your changes will be viewable online, and someone would `git pull` to see those changes reflected on their local computer.
 
 ## Exercise
 Let's practice with a simple exercise. First let's pull in case anyone else has pushed any change.
