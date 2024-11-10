@@ -1,5 +1,5 @@
 ## Background
-When developing software in teams several people may need to create, access, modify, and work on the same source code files. As we work with more people and make more and more changes to the code, 
+When developing software in teams, several people may need to create, access, modify, and work on the same source code files. As we work with more people and make more and more changes to the code, 
 it gets harder to track the different versions and modifications to the code. It also begs the question, how can we make sure that we always have the most updated version of the files 
 if multiple people are constantly modifying them. Here is where [distributed version control](https://en.wikipedia.org/wiki/Distributed_version_control) comes into play, since it allows us to have a full history of the entire [codebase](https://en.wikipedia.org/wiki/Codebase). This way, every change that we make to the codebase will be recorded so that we can see who made the changes and when.
 Perhaps the most widely used version control system is [Git](https://en.wikipedia.org/wiki/Git), which was originally created for Linux by Linus Torvalds, who is also the creator of Linux.
@@ -10,10 +10,10 @@ and another for [Data-Acquisition](https://github.com/Triton-Baja/Data-Acquisiti
 We will be using Git and GitHub to keep track and store the Data Acquisition codebase.
 
 ## GitHub setup
-As you can see, we already have set up the Triton Baja organization, so the only thing you need to do if to creae a GitHub account if you don't have one yet. This way we can invite you to be part of the organization.
+As you can see, we already have set up the Triton Baja organization, so the only thing you need to do if to create a GitHub account if you don't have one yet. This way we can invite you to be part of the organization.
 
 # Git
-Ideally we want to install Git on both the Pi and our personal computers. This way we can always write or read the code from our personal computers, even if we don't have access to the Pi.
+Ideally, we want to install Git on both the Pi and our personal computers. This way we can always write or read the code from our personal computers, even if we don't have access to the Pi.
 
 ## On Pi
 Install Git by running
@@ -26,10 +26,10 @@ sudo apt install git
 Go to [git downloads](https://git-scm.com/downloads) where you can find the executable. Run the executable and follow the instructions with the default/recommended settings.
 
 # Caching credentials
-While using Git doesn't require any credentials (username, password), if we want to connect the local folder to the repository in the cloud and be able to update the repository, we will need to tell Git who we are (our credentials). This is because only team members have write privileges, we wouldn't want just any random person to be able to change our code. We will be using the GitHub CLI for this, just follow [these instructions](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#github-cli).
+While using Git doesn't require any credentials (username, password), if we want to connect the local folder to the repository in the cloud and be able to update the repository, we will need to tell Git who we are (our credentials). This is because only team members have write privileges; we wouldn't want just any random person to be able to change our code. We will be using the GitHub CLI for this, just follow [these instructions](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#github-cli).
 
 # Cloning
-As you can see, I have already created the repository, now you will want to `clone` it such that you can download all the content locally. Let's open our command line/terminal and traverse to the directory where we want to have the repo folder. For instance, if I want the repo in my Desktop (given that I am using Windows), I would do
+As you can see, I have already created the repository, now you will want to `clone` it such that you can download all the content locally. Let's open our command line/terminal and traverse to the directory where we want to have the repo folder. For instance, if I want the repo on my Desktop (given that I am using Windows), I would do
 
 ```
 cd cd C:\Users\super\Desktop
@@ -40,7 +40,7 @@ Now we can clone the repo
 git clone https://github.com/Triton-Baja/Data-Acquisition.git
 ```
 
-Now we should see the `Data-Acquisition` folder in our Desktop (or wherever you cloned it)
+Now we should see the `Data-Acquisition` folder on our Desktop (or wherever you cloned it)
 
 Let's go into it
 ```
@@ -55,4 +55,34 @@ cd Data-Acquisition
 `git push` finally, we push (upload) the code to GitHub. Now your changes will be viewable online, and someone would `git pull` to see those changes reflected on their local computer
 
 ## Exercise
-Let's practice with a simple exercise. Open you File Explorer (Windows) or Finder (MAC OS). Go to the `Data-Acquisition` folder, then go into the `.mds` folder
+Let's practice with a simple exercise. First let's pull in case anyone else has pushed any change.
+```
+git pull
+```
+
+Open your File Explorer (Windows) or Finder (MAC OS). Go to the `Data-Acquisition` folder, then go into the `test` folder. Here, create an empty text file with your name, e.g., `Giovanni.txt`. Now let's check the status on the terminal. You should see changes in the `test/` folder
+```
+git status
+```
+
+Now let's add it to the queue
+```
+git add test/your_name.txt
+```
+
+If we check the status again, now we should see it has been added
+```
+git status
+```
+
+Since we are done adding files, let's commit
+```
+git commit -m "Created your_name.txt for testing"
+```
+
+Now let's push
+```
+git push
+```
+
+Now if you go to the [test](https://github.com/Triton-Baja/Data-Acquisition/tree/main/test) folder on GitHub you should be able to see your file.
