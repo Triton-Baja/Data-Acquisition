@@ -36,6 +36,8 @@ Verify installation
 nvim --version
 ```
 
+Delete all the downloaded files and anything that was created as a result of extracting
+
 ## Installing a nerd font
 This will help us see icons as characters. First let's install `Fontconfig`, which manages fonts on Linux
 ```
@@ -67,6 +69,8 @@ Verify installation
 fc-list | grep "JetBrains Mono"
 ```
 
+Delete all the downloaded files and anything that was created as a result of extracting
+
 ## Seting up NV Chad
 This will be our base configuration for Neovim. First we'll remove the default neovim configuration
 ```
@@ -78,4 +82,5 @@ Clone the NV CHad repo
 git clone -b v2.0 https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 ```
 
+## Configure Neovim
 Now follow [this video](https://www.youtube.com/watch?v=lsFoZIg-oDs), which will show you how to finish setting up neovim. Start at 1:15 and follow at least until 7:05
