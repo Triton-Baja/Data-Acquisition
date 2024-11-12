@@ -12,12 +12,6 @@ int main() {
 
     gpio_pinset(LED_PIN, BCM2835_GPIO_FSEL_OUTP);
 
-	gpio_pi
-
-
-
-
-	
     while (1) {
 		printf("blinking...\n");
         gpio_write(LED_PIN, HIGH);
