@@ -200,6 +200,28 @@ Try connecting
 ssh  username@hostname.local
 ```
 
+## BCM2835 Library
+This will be the C library we will be using to program the Pi. It is the fastest library other than native C. Let's download it
+```
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.75.tar.gz
+```
+
+Extract the file
+```
+tar zxvf bcm2835-1.75.tar.gz
+
+```
+
+Install the library
+```
+cd bcm2835-1.71
+./configure
+make
+sudo make install
+```
+
+Delete all the downloaded files and anything that was created as a result of extracting
+
 ## Miscellaneous
 Check the weather just for fun
 ```
