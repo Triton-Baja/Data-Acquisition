@@ -9,26 +9,68 @@ and another for [Data-Acquisition](https://github.com/Triton-Baja/Data-Acquisiti
 
 We will be using Git and GitHub to keep track and store the Data Acquisition codebase.
 
-# GitHub setup
+## GitHub setup
 As you can see, we already have set up the Triton Baja organization, so the only thing you need to do is to create a GitHub account if you don't have one yet. This way we can invite you to be part of the organization.
 
-# Git
+## Git
 Ideally, we want to install Git on both the Pi and our personal computers. This way we can always write or read the code from our personal computers, even if we don't have access to the Pi.
 
-## On Pi
+### On Pi
 Install Git by running
 ```
 sudo apt update
 sudo apt install git
 ```
 
-## On computer
+### On computer
 Go to [git downloads](https://git-scm.com/downloads) where you can find the executable. Run the executable and follow the instructions with the default/recommended settings.
 
-# Caching credentials
-While using Git doesn't require any credentials (username, password), if we want to connect the local folder to the repository in the cloud and be able to update the repository, we will need to tell Git who we are (our credentials). This is because only team members have write privileges; we wouldn't want just any random person to be able to change our code. We will be using the GitHub CLI for this, just follow [these instructions](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#github-cli).
+## Caching credentials
+While using Git doesn't require any credentials (username, password), if we want to connect the local folder to the repository in the cloud and be able to update the repository, we will need to tell Git who we are (our credentials). This is because only team members have write privileges; we wouldn't want just any random person to be able to change our code. We will be using the GitHub CLI for this.
 
-# Cloning
+### On Pi
+Make sure `curl` and `apt-transport-https` are installed
+```
+sudo apt update
+sudo apt install curl apt-transport-https
+```
+
+Get GitHub CLI package from its repository
+```
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+```
+
+Install it
+```
+sudo apt update
+sudo apt install gh
+```
+
+Verify installation
+```
+gh --version
+```
+
+Cache credentials
+```
+gh auth login
+```
+
+Select `GitHub.com`, `HTTPS`, `Login with a web browser`. Go to [hhtps://github.com/login/device](hhtps://github.com/login/device) on another device (e.g., computer) and type the code
+
+### On computer
+Follow [these instructions](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git#github-cli).
+
+## Configure identity
+For both, Pi and computer, configure your identity
+```
+git config --global user.name "your-github-username"
+git config --global user.email "your-github-email@example.com"
+
+```
+
+## Cloning
 As you can see, I have already created the repository, now you will want to `clone` it such that you can download all the content locally. Let's open our command line/terminal and traverse to the directory where we want to have the repo folder. For instance, if I want the repo on my Desktop (given that I am using Windows), I would do
 
 ```
