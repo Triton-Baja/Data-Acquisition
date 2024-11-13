@@ -67,7 +67,6 @@ For both, Pi and computer, configure your identity
 ```
 git config --global user.name "your-github-username"
 git config --global user.email "your-github-email@example.com"
-
 ```
 
 ## Cloning
