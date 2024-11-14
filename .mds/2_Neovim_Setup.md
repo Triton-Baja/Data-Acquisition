@@ -88,7 +88,7 @@ Before we go any further, it is important that you familiarize yourself with som
 ### Modes
 <img align="right" src="../.assets/nvim_normal_mode.png" alt="description of gif" width="150"/>
 
-Neovim has 7 BASIC modes, which dictate how neovim behaves. You can tell what mode you are in if you look at the bottom left corner, it should be highlighted in color.<br>
+Neovim has 7 BASIC modes, which dictate how neovim behaves. I'll go over 4 modes we'll be using. You can tell what mode you are in if you look at the bottom left corner, it should be highlighted in color.<br>
 
 `NORMAL`: This is the default mode when neovim opens. In this mode you can run all the commands and enter all the other modes. You can always go back to `NORMAL` mode by pressing `Esc` or `Ctrl + C`. Here are a few things you can do in this mode:
 
@@ -109,9 +109,22 @@ Neovim has 7 BASIC modes, which dictate how neovim behaves. You can tell what mo
 
 `INSERT`: This is the mode in which you can modify the files, think of it as the default mode for any other editor, including `nano`, where you can just start typing in the file
 
-`VISUAL`: This mode lets you copy blocks of code (and other things). To copy/paste, first move your cursor to the start of the block you want to copy, then enter `VISUAL` mode, move your cursor to highlight the block of code you want to copy, then press `y` to "yank" the block. Go back to `NORMAL` mode and press `P` to paste.
+`VISUAL`: This mode lets you copy blocks of code (and other things). To copy/paste:
+- Move your cursor to the start of the block you want to copy
+- Enter `VISUAL` mode
+- Move your cursor to highlight the block of code you want to copy
+- Press `y` to "yank" the block
+- Go back to `NORMAL` mode
+- Press `P` to paste.
 
 `TERM`: This mode will open a terminal, which is useful to compile and run code without having to close and re open neovim when we want to go back to ther terminal.
+
+For instance, this is how the setup could look like such that we have access to the tree, a file we are working on, and the terminal to compile/run it.<br>
+
+<div align="center">
+<img src="../.assets/neovim_setup.png" alt="description of gif" width="800"/>
+</div>
+
 
 ## Configure Neovim
 Now follow [this video](https://www.youtube.com/watch?v=lsFoZIg-oDs), which will show you how to finish setting up neovim. Start at 1:15 and follow at least until 7:05.<br>
