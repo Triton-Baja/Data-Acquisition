@@ -82,5 +82,40 @@ Clone the NV CHad repo
 git clone -b v2.0 https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 ```
 
+## On Neovim's commands
+Before we go any further, it is important that you familiarize yourself with some basic neovim commands. While we know neovim is way more powerful and customizable than nano, it is also a bit more complicated to use. Nothing impossible to learn either, it will just take some practice.
+
+### Modes
+Neovim has 7 BASIC modes, which dictate how neocim behaves
+
 ## Configure Neovim
-Now follow [this video](https://www.youtube.com/watch?v=lsFoZIg-oDs), which will show you how to finish setting up neovim. Start at 1:15 and follow at least until 7:05
+Now follow [this video](https://www.youtube.com/watch?v=lsFoZIg-oDs), which will show you how to finish setting up neovim. Start at 1:15 and follow at least until 7:05.<br>
+
+Then we'll set up indentation. Inside the configuration directory, `~/.config`, modify `nvim/lua/core/init.lua` such that under `-- Indenting` you see
+```lua
+-- Indenting
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.expandtab = false
+opt.smartindent = true
+```
+Finally, we want the terminal to always be in insert mode, `TERMINAL`. We'll modify `nvim/init.lua` to achieve this. At the end of the file add
+```
+-- Custom
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  pattern = "*",
+  command = "startinsert",
+})
+
+vim.api.nvim_create_autocmd({"BufEnter", "WinEnter"}, {
+  pattern = "*",
+  callback = function()
+    if vim.bo.buftype == 'terminal' then
+      vim.cmd("startinsert")
+    end
+  end,
+})
+
+```
