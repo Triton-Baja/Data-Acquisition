@@ -86,7 +86,32 @@ git clone -b v2.0 https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 Before we go any further, it is important that you familiarize yourself with some basic neovim commands. While we know neovim is way more powerful and customizable than nano, it is also a bit more complicated to use. Nothing impossible to learn either, it will just take some practice.
 
 ### Modes
-Neovim has 7 BASIC modes, which dictate how neocim behaves
+<img align="right" src="../.assets/nvim_normal_mode.png" alt="description of gif" width="150"/>
+
+Neovim has 7 BASIC modes, which dictate how neovim behaves. You can tell what mode you are in if you look at the bottom left corner, it should be highlighted in color.<br>
+
+`NORMAL`: This is the default mode when neovim opens. In this mode you can run all the commands and enter all the other modes. You can always go back to `NORMAL` mode by pressing `Esc` or `Ctrl + C`. Here are a few things you can do in this mode:
+
+<img align="right" src="../.assets/exit_vim.png" alt="description of gif" width="300"/>
+
+- `Ctrl + N` to open/close the tree (file explorer)
+- `Ctrl + H` to go from a file back to the tree
+- `I` to enter `INSERT` mode
+- `V` to enter `VISUAL` mode
+- `:term` to enter `TERMINAL` mode
+- `:sp` to split screen horizontally
+- `:spv` to split screen vertically
+- `:w` to save a file
+- `:q` to close a file
+- `:wq` to save and close a file
+- `:qa` to exit neovim
+- `:qa!` to force exit neovim (without saving)
+
+`INSERT`: This is the mode in which you can modify the files, think of it as the default mode for any other editor, including `nano`, where you can just start typing in the file
+
+`VISUAL`: This mode lets you copy blocks of code (and other things). To copy/paste, first move your cursor to the start of the block you want to copy, then enter `VISUAL` mode, move your cursor to highlight the block of code you want to copy, then press `y` to "yank" the block. Go back to `NORMAL` mode and press `P` to paste.
+
+`TERM`: This mode will open a terminal, which is useful to compile and run code without having to close and re open neovim when we want to go back to ther terminal.
 
 ## Configure Neovim
 Now follow [this video](https://www.youtube.com/watch?v=lsFoZIg-oDs), which will show you how to finish setting up neovim. Start at 1:15 and follow at least until 7:05.<br>
