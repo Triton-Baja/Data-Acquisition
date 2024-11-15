@@ -70,13 +70,18 @@ git config --global user.email "your-github-email@example.com"
 ```
 
 ## Cloning
-As you can see, I have already created the repository, now you will want to `clone` it such that you can download all the content locally. Let's open our command line/terminal and traverse to the directory where we want to have the repo folder. For instance, if I want the repo on my Desktop (given that I am using Windows), I would do
+As you can see, I have already created the repository, now you will want to `clone` it such that you can download all the content locally. Let's open our command line/terminal and traverse to the directory where we want to have the repo folder. 
 
+### On Pi
+For the Pi we'll want to be in the home directory `~`.
+
+### On computer
+You can choose where in your computer you want it. For instance, if I want the repo on my Desktop (given that I am using Windows), I would do
 ```
 cd C:\Users\super\Desktop
 ```
 
-Now we can clone the repo
+The rest of the instructions are the same for Pi and computer. Now we can clone the repo
 ```
 git clone https://github.com/Triton-Baja/Data-Acquisition.git
 ```
@@ -87,11 +92,11 @@ cd Data-Acquisition
 ```
 
 # Basig Git Commands
-`git pull` allows us to update our local folder to mirror the repository in the cloud. We must always run this command before we start a work session so that we are always working with the most updated files and don't have a conflict later.<br>
-`git status` shows you the files you have changed, and whether or not they are on the queue to be uploaded.<br>
-`git add file` whenever you have changed a `file`, you will use this command to add it to the "queue" of files to be uploaded to github.<br>
-`git commit -m "comment"` Once you have added all the files to the queue, you will give them a commit. Here you will add a text comment, which will appear on GitHub's history. This comment should have useful information regarding what changes you made to the codebase.<br>
-`git push` finally, we push (upload) the code to GitHub. Now your changes will be viewable online, and someone would `git pull` to see those changes reflected on their local computer.
+- `git pull` allows us to update our local folder to mirror the repository in the cloud. We must always run this command before we start a work session so that we are always working with the most updated files and don't have a conflict later.<br>
+- `git status` shows you the files you have changed, and whether or not they are on the queue to be uploaded.<br>
+- `git add file` whenever you have changed a `file`, you will use this command to add it to the "queue" of files to be uploaded to github.<br>
+- `git commit -m "comment"` Once you have added all the files to the queue, you will give them a commit. Here you will add a text comment, which will appear on GitHub's history. This comment should have useful information regarding what changes you made to the codebase.<br>
+- `git push` finally, we push (upload) the code to GitHub. Now your changes will be viewable online, and someone would `git pull` to see those changes reflected on their local computer.
 
 ## Exercise
 Let's practice with a simple exercise. First let's pull in case anyone else has pushed any change.
