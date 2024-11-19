@@ -56,7 +56,7 @@ Now let's install it for single user
 mkdir -p ~/.local/share/fonts
 mv fonts/ttf/*.ttf ~/.local/share/fonts/
 mv fonts/variable/*.ttf ~/.local/share/fonts/
-mv fonts/webfonts/*.ttf ~/.local/share/fonts/
+mv fonts/webfonts/*.woff2 ~/.local/share/fonts/
 ```
 
 Refresh ftonc cache
