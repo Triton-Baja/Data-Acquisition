@@ -4,6 +4,8 @@
 #include <bcm2835.h>
 #include <cstdint>
 #include <sys/types.h>
+#include <signal.h>
+#include <cstdio>
 
 constexpr uint8_t OUTPUT	= BCM2835_GPIO_FSEL_OUTP;
 constexpr uint8_t INPUT		= BCM2835_GPIO_FSEL_INPT;
@@ -25,6 +27,10 @@ inline uint8_t gpio_read(uint8_t pin){
 inline void gpio_setpull(uint8_t pin, uint8_t pull){
 	bcm2835_gpio_set_pud(pin, pull);
 }
+
+void handle_signal(int signal);
+
+void register_signals();
 
 
 #endif
