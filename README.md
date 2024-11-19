@@ -23,8 +23,9 @@ We can configure the Pi through the `Raspberry Pi Software Configuration Tool`, 
 sudo raspi-config
 ```
 Here we have multiple settings we can play with, but the ones we'll be changing are the following:
+- System Options/Hostname &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → set to `raspberrypitb` followed by the same number as the username
 - System Options/Wireless LAN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → connect to a personal network (home network/hotspot)
-- System Options/Boot / Auto Login &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → console autologin
+- System Options/Boot / Auto Login &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  → console autologin
 - Interface Options/ SSH &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → enable
 - Localisation Options &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → timezone, keyboard, etc
 
@@ -174,11 +175,11 @@ However, since the IP is constantly changing, we would have to obtain the Pi's I
 ```
 ssh username@hostname.local
 ```
+
 e.g.,
 ```
-ssh triton-baja@raspberrrypi.local
+ssh triton-baja@raspberrrypitb.local
 ```
-Before we begin, we need to make sure that every raspberrypi has its own unique hostname. The default hostname is `raspberrypi`. We need to change this to `raspberrypitb` `n`, where again, `n` is the number of Pi, e.g., `raspberrypitb1`. You can change this through `sudo raspi-config` under System Options/Hostname and rebooting.
 
 Let's install Avahi
 ```
