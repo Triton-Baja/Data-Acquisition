@@ -209,7 +209,6 @@ wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.75.tar.gz
 Extract the file
 ```
 tar zxvf bcm2835-1.75.tar.gz
-
 ```
 
 Install the library
@@ -222,32 +221,36 @@ sudo make install
 
 Delete all the downloaded files and anything that was created as a result of extracting
 
+# Apendix
+Other commands
+
 ## Miscellaneous
 Check the weather just for fun
 ```
 curl wttr.in/location
+```
+e.g.,
+```
+curl wttr.in/Paris
 ```
 Check disk usage
 ```
 df -h
 ```
 
-# Apendix
-Useful commands
-
 ## Basic Linux Commands
 
-`sudo command` run `command` with admin priviliges<br>
-`nano file` Open/create `file` in `nano`<br>
-`ls` list the contents of the directory<br>
-`cd directory` navigate to `directory`<br>
-`~` home directory<br>
-`\` root directory<br>
-`mkdir directory` make `directory`<br>
-`rmdir directory` delete empty `directory`<br>
-`rm -r directory` delete non-empty `directory`<br>
-`rm file` delete `file`<br>
-`Ctrl + C` exit pretty much anything<br>
+- `sudo command` run `command` with admin priviliges<br>
+- `nano file` Open/create `file` in `nano`<br>
+- `ls` list the contents of the directory<br>
+- `cd directory` navigate to `directory`<br>
+- `~` home directory<br>
+- `\` root directory<br>
+- `mkdir directory` make `directory`<br>
+- `rmdir directory` delete empty `directory`<br>
+- `rm -r directory` delete non-empty `directory`<br>
+- `rm file` delete `file`<br>
+- `Ctrl + C` exit pretty much anything<br>
 
 ## Other Linux Commands
 
