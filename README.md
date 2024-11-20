@@ -214,7 +214,7 @@ tar zxvf bcm2835-1.75.tar.gz
 
 Install the library
 ```
-cd bcm2835-1.71
+cd bcm2835-1.75
 ./configure
 make
 sudo make install
