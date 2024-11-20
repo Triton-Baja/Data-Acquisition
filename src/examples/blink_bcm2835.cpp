@@ -1,4 +1,3 @@
-#include "../../include/bcmwrapper/bcmwrapper.h"
 #include <bcm2835.h>
 #include <stdio.h>
 
@@ -11,13 +10,13 @@ int main(){
         return 1;
     }
 
-    gpio_pinmode(LED_PIN, OUTPUT);
+    bcm2835_gpio_fsel(LED_PIN, BCM2835_GPIO_FSEL_OUTP);
 
     while(true){
-        gpio_write(LED_PIN, HIGH);
+        bcm2835_gpio_write(LED_PIN, HIGH);
         delay(500);
 
-        gpio_write(LED_PIN, LOW);
+        bcm2835_gpio_write(LED_PIN, LOW);
 		delay(500);
     }
 

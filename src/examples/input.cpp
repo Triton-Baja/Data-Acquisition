@@ -1,7 +1,6 @@
 #include "../../include/bcmwrapper/bcmwrapper.h"
 #include <bcm2835.h>
 #include <stdio.h>
-#include <signal.h>
 
 constexpr uint8_t BUTTON_PIN = 17;
 
