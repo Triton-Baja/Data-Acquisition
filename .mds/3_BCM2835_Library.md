@@ -13,9 +13,19 @@ Note that we'll be showing you the [function prototypes](https://cplusplus.com/a
 ```C++
 void bcm2835_gpio_fsel(uint8_t pin, uint8_t mode);
 ```
-This function is used to set a `pin` to an `BCM2835_GPIO_FSEL_OUTP` (output) or `BCM2835_GPIO_FSEL_INPT` (input). In other words, we need to tell the Pi if this pin will be "reading" or "writing", which it needs to know before we can use the pins.
+This function is used to set a `pin` to an `BCM2835_GPIO_FSEL_OUTP` (output) or `BCM2835_GPIO_FSEL_INPT` (input). In other words, we need to tell the Pi if this pin will be "reading" or "writing". This has to be set before we can use the `pin`
 
 ```C++
 void bcm2835_gpio_write(uint8_t pin, uint8_t on);
 ```
-This function is used to write a `HIGH` or `LOW` value to a `pin`
+This function is used to write a `HIGH` or `LOW` value to a `pin`. Here a `HIGH` value represents 3.3v and a `LOW` valueɛrepresents 0v.
+
+```C++
+uint8_t bcm2835_gpio_lev(uint8_t pin);
+```
+This function reads `pin` and returns its value, either `HIGH` or `LOW`. Here `HIGH` represents 0v and `LOW` represents 0v. **The maximum GPIO input voltage is 3.3v, it cannot handle 5v**.
+
+```C++
+void bcm2835_gpio_set_pud(uint8_t pin, uint8_t pud);
+```
+This function sets either a `BCM2835_GPIO_PUD_UP` (pullup) or `BCM2835_GPIO_PUD_DOWN` (pulldown) resistor at `pin`. Read more about pull resistors [here](eepower.com/resistor-guide/resistor-applications/pull-up-resistor-pull-down-resistor/).
