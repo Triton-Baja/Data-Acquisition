@@ -5,6 +5,7 @@ is compatible with all of the different Broadcom chip versions.
 
 ## Pinout
 <img align="center" src="../.assets/reference/pinout-corrected-1024x605.jpg" width="600" />
+
 As you can see, the Raspberry Pi 4 has 40 pins, which have two different ways for being numbered, the physical pin number, and the bcm number. The bcm2835 library uses the latter when refering to `pin` in their functions.
 
 ## Basic bcm2835 functions
