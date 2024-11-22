@@ -28,4 +28,4 @@ This function reads `pin` and returns its value, either `HIGH` or `LOW`. Here `H
 ```C++
 void bcm2835_gpio_set_pud(uint8_t pin, uint8_t pud);
 ```
-This function sets either a `BCM2835_GPIO_PUD_UP` (pullup) or `BCM2835_GPIO_PUD_DOWN` (pulldown) resistor at `pin`. Read more about pull resistors [here](eepower.com/resistor-guide/resistor-applications/pull-up-resistor-pull-down-resistor/).
+This function sets either a `BCM2835_GPIO_PUD_UP` (pullup) or `BCM2835_GPIO_PUD_DOWN` (pulldown) resistor at `pin`. Read more about pull resistors [here](https://eepower.com/resistor-guide/resistor-applications/pull-up-resistor-pull-down-resistor/).
