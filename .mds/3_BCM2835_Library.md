@@ -23,7 +23,7 @@ This function is used to write a `HIGH` or `LOW` value to a `pin`. Here a `HIGH`
 ```C++
 uint8_t bcm2835_gpio_lev(uint8_t pin);
 ```
-This function reads `pin` and returns its value, either `HIGH` or `LOW`. Here `HIGH` represents 0v and `LOW` represents 0v. **The maximum GPIO input voltage is 3.3v, it cannot handle 5v**.
+This function reads `pin` and returns its value, either `HIGH` or `LOW`. Here `HIGH` represents 3.3v and `LOW` represents 0v. **The maximum GPIO input voltage is 3.3v, it cannot handle 5v**.
 
 ```C++
 void bcm2835_gpio_set_pud(uint8_t pin, uint8_t pud);
