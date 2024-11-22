@@ -13,7 +13,7 @@ Note that we'll be showing you the [function prototypes](https://cplusplus.com/a
 ```C++
 void bcm2835_gpio_fsel(uint8_t pin, uint8_t mode);
 ```
-This function is used to set a `pin` to an `BCM2835_GPIO_FSEL_OUTP` (output) or `BCM2835_GPIO_FSEL_INPT` (input). In other words, we need to tell the Pi if this pin will be "reading" or "writing". This has to be set before we can use the `pin`
+This function is used to set a `pin` to an `BCM2835_GPIO_FSEL_OUTP` (output) or `BCM2835_GPIO_FSEL_INPT` (input). In other words, we need to tell the Pi if this pin will be "writing" or "reading". This has to be set before we can use the `pin`
 
 ```C++
 void bcm2835_gpio_write(uint8_t pin, uint8_t on);
