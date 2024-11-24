@@ -95,3 +95,14 @@ int main(){
     return 0;
 }
 ```
+
+## Compiling
+Just like for any other file, you want to compile the code using `g++`. However, in the case that we are using externally added libraries (like bcm2835) we need to add an extra argument, an `-l` followed by the library name.
+```
+g++ source.cpp -o source -lLIBRARY_NAME
+```
+
+For the case of bcm2835
+```
+g++ source.cpp -o source -lbcm2835
+```
