@@ -13,5 +13,5 @@ dtoverlay=gpio-shutdown, gpio_pin=X,
 
 For instance, here we would connect the button between GND and GPIO 17
 ```
-dtoverlay=gpio-shutdown, gpio_pin=17,
+dtoverlay=gpio-shutdown, gpio_pin=26,
 ```
