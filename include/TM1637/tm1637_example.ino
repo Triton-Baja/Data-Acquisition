@@ -8,9 +8,8 @@ TM1637Display display(CLK, DIO);
 
 void setup(){}
 
-void loop()
-{
-  int k;
+void loop(){
+
   uint8_t data[4];
   display.setBrightness(0x0f);
 
