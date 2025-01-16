@@ -16,7 +16,6 @@ std::string getConnectedSSID() {
         result += buffer.data();
     }
 
-    // Remove trailing newline character if present
     if (!result.empty() && result.back() == '\n') {
         result.pop_back();
     }
