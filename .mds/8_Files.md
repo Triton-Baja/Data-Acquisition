@@ -74,7 +74,7 @@ int main(){
 
 	printf("%s\n", line.c_str());
 
-  //Manually extracting the names by looking for the comma separator	
+  	// Manually extracting the names by looking for the comma separator	
 	int i = 0;
 	int j = 0;
 
@@ -90,7 +90,7 @@ int main(){
 	for(int i = 0; i < 4; i++)
 		printf("%s\n", names[i].c_str());
 
-  // Using getline's delimiter argument to read until we find a comma
+  	// Using getline's delimiter argument to read until we find a comma
 	std::string name;
 	j = 0;
 	while(getline(file, name, ','))
@@ -162,7 +162,7 @@ void workingWithFloats(std::fstream &file){
 	file.close();
 
 	// Reading
-  float readBuffer[4];
+  	float readBuffer[4];
 	file.open("data_floats.bin", std::ios::in);
 	
 	file.seekg(0, std::ios::beg);
