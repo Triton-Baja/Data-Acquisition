@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "bcm2835-1.75/src/bcm2835.h"
+#include <bcm2835.h>
 
 #define ADS1115_ADDRESS 0X48
 
@@ -74,7 +74,7 @@ double readVoltage(const uint16_t config){
     // 1010111001010101
 
     int16_t reading = static_cast<int16_t>((readingSplit[0] << 8) | readingSplit[1]);
-    double voltage;
+    double voltage = -1;
     uint16_t voltageBits = config & (7 << 9);
 
     if(voltageBits == CONFIG_PGA_6_144V)
@@ -86,7 +86,7 @@ double readVoltage(const uint16_t config){
     else if(voltageBits == CONFIG_PGA_6_144V)
         voltage = 32768.0 * 6.144 / reading;
 
-    return voltage;
+    return static_cast<double>(reading);
 
 
 
@@ -99,12 +99,16 @@ int main(){
         return 1;
     }
 
+	if(!bcm2835_i2c_begin()){
+		printf("Failed to initialize I2C\nAre you running as root (sudo)?\n");
+		return 2;
+	}
+
     bcm2835_i2c_setSlaveAddress(ADS1115_ADDRESS);
     bcm2835_i2c_set_baudrate(100000);
 
-
     while(true){
-        double voltage = readVoltage(CONFIG_OS_SINGLE | CONFIG_MUX_AIN2_GND | CONFIG_PGA_4_096V | CONFIG_MODE_CONTINUOUS |
+        double voltage = readVoltage(CONFIG_OS_SINGLE | CONFIG_MUX_AIN2_GND | CONFIG_PGA_6_144V | CONFIG_MODE_CONTINUOUS |
             CONFIG_DR_128SPS | CONFIG_COMP_POL_LOW | CONFIG_COMP_NON_LAT | CONFIG_COMP_QUE_DIS);
         printf("%f\n", voltage);
         delay(200);
