@@ -1,0 +1,15 @@
+# Default ignored files
+/shelf/
+**/workspace.xml
+**/credentials.json
+**/token.json
+
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+**/dataSources.local.xml
+
+# Custom
+/.idea
+**/.idea
