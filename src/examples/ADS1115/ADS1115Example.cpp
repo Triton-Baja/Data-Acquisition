@@ -51,9 +51,8 @@
 #define CONFIG_COMP_QUE_ASRT3   (2 << 0)
 #define CONFIG_COMP_QUE_DIS     (3 << 0)
 
-
-double readVoltage(const uint16_t config){
-    char configData[4];
+void writeRegister(uint16_t config){
+	char configData[4];
 
     configData[0] = 0x01;
     configData[1] = static_cast<char>(config >> 8);
@@ -65,6 +64,11 @@ double readVoltage(const uint16_t config){
 
     bcm2835_i2c_write(&configData[3], 1);
 
+
+}
+
+double readVoltage(const uint16_t config){
+
     char readingSplit[2];
     bcm2835_i2c_read(readingSplit, 2);
 
@@ -74,19 +78,21 @@ double readVoltage(const uint16_t config){
     // 1010111001010101
 
     int16_t reading = static_cast<int16_t>((readingSplit[0] << 8) | readingSplit[1]);
-    double voltage = -1;
     uint16_t voltageBits = config & (7 << 9);
 
+	double fs;
+
+
     if(voltageBits == CONFIG_PGA_6_144V)
-        voltage = 32768.0 * 6.144 / reading;
+		fs = 6.144 / 32767.0;
 
     else if(voltageBits == CONFIG_PGA_4_096V)
-        voltage = 32768.0 * 4.096 / reading;
+		fs = 4.096 / 32767.0;
 
-    else if(voltageBits == CONFIG_PGA_6_144V)
-        voltage = 32768.0 * 6.144 / reading;
+    else if(voltageBits == CONFIG_PGA_2_048V)
+		fs = 2.048 / 32767.0;
 
-    return static_cast<double>(reading);
+    return reading * 2.048 / 32767.0;
 
 
 
@@ -107,11 +113,15 @@ int main(){
     bcm2835_i2c_setSlaveAddress(ADS1115_ADDRESS);
     bcm2835_i2c_set_baudrate(100000);
 
+   // writeRegister(CONFIG_OS_SINGLE | CONFIG_MUX_AIN0_GND | CONFIG_PGA_6_144V | CONFIG_MODE_CONTINUOUS |
+          //  CONFIG_DR_128SPS | CONFIG_COMP_POL_LOW | CONFIG_COMP_NON_LAT | CONFIG_COMP_QUE_DIS);
+
     while(true){
-        double voltage = readVoltage(CONFIG_OS_SINGLE | CONFIG_MUX_AIN2_GND | CONFIG_PGA_6_144V | CONFIG_MODE_CONTINUOUS |
+        double voltage = readVoltage(CONFIG_OS_SINGLE | CONFIG_MUX_AIN0_GND | CONFIG_PGA_6_144V | CONFIG_MODE_CONTINUOUS |
             CONFIG_DR_128SPS | CONFIG_COMP_POL_LOW | CONFIG_COMP_NON_LAT | CONFIG_COMP_QUE_DIS);
         printf("%f\n", voltage);
-        delay(200);
+		printf("hey\n");
+        delay(50);
     }
 
     // 100000000000000

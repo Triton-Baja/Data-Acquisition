@@ -124,5 +124,5 @@ chart_config = {
     "smooth": True
 }
 
-upload_csv_and_create_line_chart('test.csv', 'test_raw')
-upload_csv_and_create_line_chart('test.csv', 'test', chart_config)
+upload_csv_and_create_line_chart('../temp.csv', 'temp_raw')
+upload_csv_and_create_line_chart('../temp.csv', 'temp', chart_config)

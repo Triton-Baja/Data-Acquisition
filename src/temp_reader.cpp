@@ -1,5 +1,11 @@
 #include <stdio.h>
 #include <bcm2835.h>
+#include <cmath>
+#include <fstream>
+#include <chrono>
+#include "../include/bcmwrapper/bcmwrapper.h"
+
+constexpr uint8_t BUTTON_PIN = 16;
 
 #define ADS1115_ADDRESS 0X48
 
@@ -51,6 +57,41 @@
 #define CONFIG_COMP_QUE_ASRT3   (2 << 0)
 #define CONFIG_COMP_QUE_DIS     (3 << 0)
 
+void binToCSV(std::fstream &file, std::string filename){
+	file.open(filename, std::ios::in);
+
+	file.seekg(0, std::ios::end);
+	size_t len = file.tellg();
+	size_t numFloats = len / sizeof(double);
+
+	double readBuffer[numFloats];
+
+	file.seekg(0, std::ios::beg);
+	file.read(reinterpret_cast<char*>(readBuffer), sizeof(readBuffer));
+	file.close();
+
+	printf("Converting .bin to .csv...\n");
+
+	file.open("temp.csv", std::ios::out | std::ios::trunc);
+	
+	for(int i = 0; i < numFloats / 2; i++){
+		file << std::to_string(readBuffer[2 * i]);
+		file << ',';
+		file << std::to_string(readBuffer[2 * i + 1]);
+		file << '\n';
+		
+	}
+
+	file.close();
+
+	printf("Converted .bin to .csv\n");
+
+}
+
+void uploadToDrive(){
+	system("bash -c 'cd GoogleDriveAPI && source venv/bin/activate && python3 upload.py'");
+}
+
 
 double readVoltage(const uint16_t config){
     char configData[4];
@@ -78,15 +119,15 @@ double readVoltage(const uint16_t config){
     uint16_t voltageBits = config & (7 << 9);
 
     if(voltageBits == CONFIG_PGA_6_144V)
-        voltage = 32768.0 * 6.144 / reading;
+        voltage = reading * 6.144 / 32768.0;
 
     else if(voltageBits == CONFIG_PGA_4_096V)
-        voltage = 32768.0 * 4.096 / reading;
+        voltage = reading * 4.096 / 32768;
 
     else if(voltageBits == CONFIG_PGA_6_144V)
-        voltage = 32768.0 * 6.144 / reading;
+        voltage = reading * 6.144 / 32768.0;
 
-    return static_cast<double>(reading);
+    return static_cast<double>(voltage);
 
 }
 
@@ -102,17 +143,49 @@ int main(){
 		return 2;
 	}
 
+	gpio_pinmode(BUTTON_PIN, INPUT);
+	gpio_setpull(BUTTON_PIN, PULLUP);
+
     bcm2835_i2c_setSlaveAddress(ADS1115_ADDRESS);
     bcm2835_i2c_set_baudrate(100000);
 
-    while(true){
+	std::fstream file;
+	file.open("temp.bin", std::ios::out | std::ios::trunc);
+
+	if(!file.is_open()){
+		printf("File failed to open\n");
+		return 3;
+	}
+
+	file.seekp(0, std::ios::beg);
+	
+	auto start_time = std::chrono::steady_clock::now();
+
+    while(gpio_read(BUTTON_PIN)){
         double voltage = readVoltage(CONFIG_OS_SINGLE | CONFIG_MUX_AIN2_GND | CONFIG_PGA_6_144V | CONFIG_MODE_CONTINUOUS |
             CONFIG_DR_128SPS | CONFIG_COMP_POL_LOW | CONFIG_COMP_NON_LAT | CONFIG_COMP_QUE_DIS);
-        printf("%f\n", voltage);
+        double bit_10 = voltage * 1024.0 / 5.25;
+
+		double r2 = (bit_10 * 100000) / (1024 - bit_10);
+		r2 /= 1000;
+		double temp = 0.0018 * pow(r2, 2) - 0.6001 * r2 + 66.5213;
+
+		double elapsed = std::chrono::duration<double>(std::chrono::steady_clock::now() - start_time).count();
+
+		file.write(reinterpret_cast<const char*>(&elapsed), sizeof(double));
+		file.write(reinterpret_cast<const char*>(&temp), sizeof(double));
+		printf("%f\n", temp);
         delay(200);
     }
 
+	file.close();
+
+	binToCSV(file, "temp.bin");
+
     bcm2835_i2c_end();
     bcm2835_close();
+
+	uploadToDrive();
+
     return 0;
 }
