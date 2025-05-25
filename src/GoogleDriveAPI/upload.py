@@ -1,11 +1,18 @@
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google.oauth2 import service_account
+import csv
 
 SCOPES = [
     'https://www.googleapis.com/auth/drive.file',
     'https://www.googleapis.com/auth/spreadsheets'
 ]
+
+def get_rows(file_path):
+    with open(file_path, 'r') as f:
+        reader = csv.reader(f)
+        row_count = sum(1 for row in reader)
+    return row_count - 1
 
 
 def upload_csv_and_create_line_chart(file_path, file_name, chart_config=None):
@@ -38,6 +45,8 @@ def upload_csv_and_create_line_chart(file_path, file_name, chart_config=None):
         sheet_id = spreadsheet['sheets'][0]['properties']['sheetId']
         print(f"Sheet ID of the first sheet: {sheet_id}")
 
+        rows = get_rows(file_path)
+
         requests = [
             {
                 "addChart": {
@@ -60,7 +69,7 @@ def upload_csv_and_create_line_chart(file_path, file_name, chart_config=None):
                                                     {
                                                         "sheetId": sheet_id,  # use real sheetId here
                                                         "startRowIndex": 0,
-                                                        "endRowIndex": 11,
+                                                        "endRowIndex": rows,
                                                         "startColumnIndex": 0,
                                                         "endColumnIndex": 1
                                                     }
@@ -77,7 +86,7 @@ def upload_csv_and_create_line_chart(file_path, file_name, chart_config=None):
                                                     {
                                                         "sheetId": sheet_id,  # use real sheetId here
                                                         "startRowIndex": 0,
-                                                        "endRowIndex": 11,
+                                                        "endRowIndex": rows,
                                                         "startColumnIndex": 1,
                                                         "endColumnIndex": 2
                                                     }
