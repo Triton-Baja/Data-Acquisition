@@ -3,6 +3,7 @@
 **/workspace.xml
 **/credentials.json
 **/token.json
+**/service.json
 
 # Editor-based HTTP Client requests
 /httpRequests/
