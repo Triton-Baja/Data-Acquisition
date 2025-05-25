@@ -16,7 +16,7 @@ def upload_csv_and_create_line_chart(file_path, file_name, chart_config=None):
 
     else:
         flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
-        creds = flow.run_local_server(port=0)
+        creds = flow.run_console()
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
 
